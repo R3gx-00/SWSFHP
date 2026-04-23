@@ -11,7 +11,7 @@ def scrap(soup):
     cena = cena[0]+cena[1]
     cena = int(cena)
 
-    #może nie być
+    #CZYNSZ może go nie być
     try:
         czynsz = soup.find("div", class_="css-1mwdge5 elm6lnc5").text.split()[2]
         czynsz = int(czynsz)
@@ -20,19 +20,26 @@ def scrap(soup):
 
     cena = cena+czynsz
 
-    #tą tablice ma konwertować na słownik, bo dokładnie w takim stylu jest on stworzony
+    #data
+    date = soup.find("p", class_="FxCMd hq-7O CgHmQ css-1xm0deg eylxo5j5").text.split()[2]
+    
+    #obsługa tablicy z informacjami
     info_table = soup.find_all("div", class_="css-1okys8k e178zspo0")
     for i in range(len(info_table)):
         info_table[i] = info_table[i].text
 
-    pokoje = info_table[3]
-    metraz = info_table[1].split()[0]
+    #aby odnaleźć informację w tej tablicy szukamy słowa kluczowego i wybieramy kolejny element,
+    #jeśli kolejny element posiada ":" to nie ma tej informacji
+    #słowa kluczowe w tablicy:
+    #Powierzchnia: Liczba pokoi: Ogrzewanie: Piętro: Stan wykończenia: Dostępne od: Czynsz: Kaucja: Typ ogłoszeniodawcy:
+    #Informacje dodatkowe:
 
-    #data
-    date = soup.find("p", class_="FxCMd hq-7O CgHmQ css-1xm0deg eylxo5j5").text.split()[2]
-
-    #owner
-    owner = info_table[17]
+    pokoje_index = info_table.index("Liczba pokoi:")
+    metraz_index = info_table.index("Powierzchnia:")
+    owner_index = info_table.index("Typ ogłoszeniodawcy:")
+    pokoje = info_table[pokoje_index+1]
+    metraz = info_table[metraz_index+1].split()[0]
+    owner = info_table[owner_index+1]
 
     #coordinates (may not work)
     #oprócz pinezki może też być zaznaczony obszar, trzeba rozważyć też tą opcję
@@ -40,8 +47,4 @@ def scrap(soup):
     # marker = soup.find("gmp-advanced-marker")["position"].split(",")
 
     print(id,cena,metraz,pokoje,date,owner)
-
-
-with open("sites/not_added/site2.html","r", encoding="utf-8") as f:
-    html= f.read()
 
