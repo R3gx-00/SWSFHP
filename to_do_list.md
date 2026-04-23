@@ -1,6 +1,7 @@
 to do list:
 
-- analyze the problem
-- organise file structure
-- set up a goal
+- dodać zapisywanie do bazy danych
+- ogłoszenie o tym samym id nie może być dodane dwa razy
+- dodać scrapowanie lokalizacji
+- 
 -

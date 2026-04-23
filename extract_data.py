@@ -41,10 +41,19 @@ def scrap(soup):
     metraz = info_table[metraz_index+1].split()[0]
     owner = info_table[owner_index+1]
 
-    #coordinates (may not work)
-    #oprócz pinezki może też być zaznaczony obszar, trzeba rozważyć też tą opcję
+    #coordinates 
+    # są dwie opcje pokazania lokalizacji: pinezka i obszar
 
-    # marker = soup.find("gmp-advanced-marker")["position"].split(",")
 
-    print(id,cena,metraz,pokoje,date,owner)
+    try:
+        # koordynaty dla pinezki:
+        location = soup.find("gmp-advanced-marker")["position"].split(",")
+    except:
+        # koordynaty dla obszaru
+        perimiter = soup.find("div", class_="gm-style")
+        link = perimiter.find("a")["href"].split("=")[1]
+        location = link[:-2].split(',')
+
+
+    print(id,cena,metraz,pokoje,date,owner,location)
 
