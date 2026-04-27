@@ -55,5 +55,5 @@ def scrap(soup):
         location = link[:-2].split(',')
 
 
-    print(id,cena,metraz,pokoje,date,owner,location)
+    return(id,cena,metraz,pokoje,date,owner,location[0],location[1])
 
