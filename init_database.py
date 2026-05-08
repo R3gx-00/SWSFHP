@@ -2,7 +2,7 @@
 # cechy danych ktore bedziemy zapisywac to: id, cena, metraz,liczba pokoi, data_wystawienia, biuro/, długość i szerokość geograficzną
 import pandas as pd
 
-init_database = pd.DataFrame(columns=["ID","PRICE","SIZE","ROOMS","DATE","OWNER"])
+init_database = pd.DataFrame(columns=["ID","PRICE","SIZE","ROOMS","DATE","OWNER","LOCATION"])
 init_database.to_csv("database.csv",index =False)
 
 created_database = pd.read_csv("database.csv")
