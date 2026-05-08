@@ -46,6 +46,7 @@ for tab in tabs:
         "LON":data[7]})
 
 new_df = pd.DataFrame(data_rows)
+print(new_df)
 df = pd.concat([df, new_df], ignore_index=True)
 df = df.drop_duplicates(subset="ID", keep="first")
 
