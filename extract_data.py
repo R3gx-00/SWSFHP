@@ -7,8 +7,10 @@ def scrap(soup):
     id = soup.find("div", class_="css-j7qwjs e1uonnrl1").p.text.split()[1]
 
     #PRICE
-    cena = soup.find("strong", class_="css-1o51x5a elm6lnc1").text.split()
-    cena = cena[0]+cena[1]
+    cena = soup.find("strong", class_="css-1o51x5a").text.split()
+    cena.pop()
+    cena = ''.join(cena)
+    print(cena)
     cena = int(cena)
 
     #CZYNSZ może go nie być
