@@ -10,7 +10,6 @@ def scrap(soup):
     cena = soup.find("strong", class_="css-1o51x5a").text.split()
     cena.pop()
     cena = ''.join(cena)
-    print(cena)
     cena = int(cena)
 
     #CZYNSZ może go nie być
